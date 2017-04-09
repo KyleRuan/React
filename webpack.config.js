@@ -26,9 +26,7 @@ module.exports = {
     // progress:true
   },
   module: {
-
     rules: [
-
       {
         test: /\.jsx?$/,
         enforce: 'pre',
@@ -42,14 +40,6 @@ module.exports = {
         include:APP_PATH
       }
     ],
-
-  //   loaders:[
-  //     {
-  //       test: /\.jsx?$/,
-  //       loader: ['babel'],
-  //       include:APP_PATH
-  //     }
-  //   ]
   },
   plugins: [new HtmlWebpackPlugin(
       {
