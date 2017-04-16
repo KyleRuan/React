@@ -2,7 +2,10 @@
   "extends":"airbnb",
   "rules": {
     "comma-dangle":["error","never"],
-    "no-console" : "off"
+    "no-console" : "off",
+    "no-plusplus": "off",
+    "no-unused-vars":"warn",
+    "no-array-index-key":"off"
   },
   "globals": {
     "document": true,
