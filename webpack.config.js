@@ -8,6 +8,11 @@ var webpack = require('webpack');
 var ROOT_PATH =path.resolve(__dirname);
 var APP_PATH = path.resolve(ROOT_PATH,'app');
 var BUILD_PATH = path.resolve(ROOT_PATH,'build');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const extractSass = new ExtractTextPlugin({
+  filename: "[name].[contenthash].css",
+  disable: process.env.NODE_ENV === "development"
+});
 module.exports = {
   // 配置信息
   entry: {
@@ -38,6 +43,20 @@ module.exports = {
         test: /\.jsx?$/,
         loader: ['babel-loader'],
         include:APP_PATH
+      },
+      {
+        test: /\.scss$/,
+        use: extractSass.extract({
+          use:[
+            {
+              loader: 'css-loader'
+            },
+            {
+              loader: 'sass-loader'
+            }
+          ],
+          fallback: 'style-loader'
+        })
       }
     ],
   },
@@ -45,7 +64,7 @@ module.exports = {
       {
         title:"kyleruan"
       }
-  )],
+  ),extractSass],
   resolve:{
     extensions:['.','.js','.jsx']
   }

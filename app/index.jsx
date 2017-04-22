@@ -1,22 +1,27 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import Profile from './Profile';
+import 'bootstrap/scss/bootstrap.scss';
+import 'babel-polyfill';
+// import Deskmark from './components/Deskmark';
+import List from './components/List';
 
-function App() {
-  const props = {
-    name: 'kyle',
-    age: 13
-  };
-  const profile = (<Profile {...props} />);
-  return (
-    <div className="container">
-      <h1>Hello React</h1>
-      <Profile {...props} />
-      <h2>use var</h2>
-      {profile}
-    </div>
-  );
-}
+const items = [
+  {
+    id: '6c89132-8dw2w1201s',
+    title: 'Hello world',
+    content: '## testing markdown',
+    time: 1458030208280
+  },
+  {
+    id: '6c89132-8dw22rce201s',
+    title: 'Hello',
+    content: '# testing markdown',
+    time: 1458030208359
+  }
+];
+const onSelect = (itemID) => {
+  console.log(itemID);
+};
 const app = document.createElement('div');
 document.body.appendChild(app);
-ReactDom.render(<App />, app);
+ReactDom.render(<List items={items} onSelect={onSelect} />, app);
