@@ -8,7 +8,8 @@
     "no-array-index-key":"off",
     "jsx-a11y/href-no-hash":"off",
     "react/prop-types":"off",
-    "no-extraneous-dependencies":"off"
+    "no-extraneous-dependencies":"off",
+    "react/require-default-props":"off"
   },
   "globals": {
     "document": true,

@@ -1,10 +1,11 @@
 /**
  * Created by KyleRuan on 2017/4/20.
  */
-
+/* eslint react/no-danger: 0 */
 import React from 'react';
 import PropTypes from 'prop-types';
 import marked from 'marked';
+import './style.scss';
 
 const proptypes = {
   /* eslint react/require-default-props: 0 */

@@ -2,20 +2,29 @@
  * Created by KyleRuan on 2017/4/21.
  */
 import React from 'react';
+import uuid from 'uuid';
 // import PropTypes from 'prop-types';
 import List from '../List';
 import CreateBar from '../CreateBar';
+import ItemEditor from '../ItemEditor';
+import ItemShowLayer from '../ItemShowLayer';
+import './style.scss';
 
 export default class Deskmark extends React.Component {
   constructor(props) {
     super(props);
-
+    this.props = props;
+    // 需要存储的
+    // 1. 保存所有文章的东西
+    // 2. 当前选中的文章id
+    // 3. 右边是编辑还是阅读状态
+    const selected = this.props.items[0];
+    const selectedID = selected.id ? selected.id : null;
     this.state = {
-      items: [],
-      selectedId: null,
+      items: this.props.items,
+      selectedId: selectedID,
       editing: false
     };
-
     this.selectItem = this.selectItem.bind(this);
     this.saveItem = this.saveItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -36,26 +45,32 @@ export default class Deskmark extends React.Component {
 
   saveItem(item) {
     let items = this.state.items;
-
     // new item
-    if (!item.id) {
+    console.log(item);
+    let id = item.id;
+    const { title, content } = item;
+    if (!id) {
+      id = uuid.v4();
       items = [...items, {
-        time: new Date().getTime()
+        time: new Date().getTime(),
+        id,
+        title,
+        content
       }];
       // existed item
     } else {
       items = items.map(
         exist => (
           exist.id === item.id
-            ? {}
+            ? item
             : exist
         )
       );
     }
-
+    console.log(items);
     this.setState({
       items,
-      selectedId: item.id,
+      selectedId: id,
       editing: false
     });
   }
@@ -64,11 +79,11 @@ export default class Deskmark extends React.Component {
     if (!id) {
       return;
     }
-
+    const items = this.state.items.filter(
+      result => result.id !== id
+    );
     this.setState({
-      items: this.state.items.filter(
-        result => result.id !== id
-      )
+      items
     });
   }
 
@@ -91,26 +106,33 @@ export default class Deskmark extends React.Component {
   }
 
   render() {
-    const items = [
-      {
-        id: '6c89132-8dw2w1201s',
-        title: 'Hello world',
-        content: '## testing markdown',
-        time: 1458030208280
-      },
-      {
-        id: '6c89132-8dw22rce201s',
-        title: 'Hello',
-        content: '# testing markdown',
-        time: 1458030208359
-      }
-    ];
+    const { items, selectedId, editing } = this.state;
+    const selected = selectedId && items.find(item => item.id === selectedId);
+    const mainPart = editing ? (
+      <ItemEditor
+        item={selected}
+        onSave={this.saveItem}
+        onCancel={this.cancelEdit}
+      />
+    ) : (
+      <ItemShowLayer
+        item={selected}
+        onEdit={this.editItem}
+        onDelete={this.deleteItem}
+      />
+      );
     return (
       <section className="deskmark-component">
+        <nav className="navbar navbar-fixed-top navbar-dark bg-inverse">
+          <a className="navbar-brand" href="#">Deskmark App</a>
+        </nav>
         <div className="container">
           <div className="row">
-            <CreateBar />
-            <List items={items} />
+            <div className="col-md-4 list-group">
+              <CreateBar onClick={this.createItem} />
+              <List items={this.state.items} onSelect={this.selectItem} />
+            </div>
+            {mainPart}
           </div>
         </div>
       </section>

@@ -3,7 +3,7 @@ import ReactDom from 'react-dom';
 import 'bootstrap/scss/bootstrap.scss';
 import 'babel-polyfill';
 // import Deskmark from './components/Deskmark';
-import List from './components/List';
+import Deskmark from './components/Deskmark';
 
 const items = [
   {
@@ -19,9 +19,6 @@ const items = [
     time: 1458030208359
   }
 ];
-const onSelect = (itemID) => {
-  console.log(itemID);
-};
 const app = document.createElement('div');
 document.body.appendChild(app);
-ReactDom.render(<List items={items} onSelect={onSelect} />, app);
+ReactDom.render(<Deskmark items={items} />, app);
