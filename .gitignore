@@ -29,9 +29,10 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
-
+.idea/workspace.xml
 # Optional npm cache directory
 .npm
 
 # Optional REPL history
 .node_repl_history
+.idea/fileTemplates/
