@@ -30,6 +30,11 @@ module.exports = {
     inline:true,
     // progress:true
   },
+  externals: {
+    'react/addons': true,
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true
+  },
   module: {
     rules: [
       {
