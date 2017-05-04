@@ -5,12 +5,16 @@
     "no-console" : "off",
     "no-plusplus": "off",
     "no-unused-vars":"warn",
-    "no-array-index-key":"off"
+    "no-array-index-key":"off",
+    "jsx-a11y/href-no-hash":"off",
+    "react/prop-types":"off",
+    "no-extraneous-dependencies":"off",
+    "react/require-default-props":"off"
   },
   "globals": {
     "document": true,
     "foo": true,
     "window": true
-  },
+  }
 
 }

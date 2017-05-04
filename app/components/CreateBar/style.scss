@@ -1,0 +1,7 @@
+
+  .create-bar-component {
+    background: #0275d8;
+    &:hover {
+      background: darken(#0275d8, 20%);
+    }
+  }

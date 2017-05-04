@@ -2,7 +2,7 @@
 some React Demo &practise
 
 ## React lifecycle
-![ajs-life](./ajs-life.png)
+![ajs-life](./READMEResource/ajs-life.png)
 
 ## 怎样构建一个React程序
 1. 先画出web的草图
