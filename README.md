@@ -13,3 +13,10 @@ some React Demo &practise
 6. 添加交互方法
 7. 将这些组合在一起，完成最终的版本
 
+## Redux
+整个应用的状态信息都保存在一个store 中，React程序需要由store将数据从组件树的根节点
+传入
+
+### 步骤
+1. acions 创建action
+
