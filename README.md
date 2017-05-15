@@ -18,5 +18,16 @@ some React Demo &practise
 传入
 
 ### 步骤
-1. acions 创建action
+1. actions 创建action
+2. reducers
+
+#### actions
+主要页面上有多少个点击事件，数清楚后，为每一个事件注册个type，为每个事件写函数，
+方法最后都需要返回注册时间的type。带参数的时间，在返回的type后，添加那个字段
+
+#### reducers
+对于不同的部分一般分为多个reducer，然后在主reducer中调用redux中的`combineReducers`
+来结合多个。这里主要是根据不停的事件type返回相应的store。
+
+
 

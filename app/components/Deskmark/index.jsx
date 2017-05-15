@@ -19,7 +19,11 @@ export default class Deskmark extends React.Component {
     const { state, actions } = this.props;
     const { isEditing, selectedId } = state.editor;
     const items = state.items;
-    const item = items.find(it => it.id === selectedId);
+    let item = items.find(it => it.id === selectedId);
+    if (!item && items.length >= 1) {
+      // 默认选中第一个
+      item = items[0];
+    }
     const mainPart = isEditing ? (
       <ItemEditor
         item={item}
